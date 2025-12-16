@@ -1,0 +1,8 @@
+torchvision
+torch
+pandas
+numpy
+ipykernel
+tqdm
+pillow
+requests
