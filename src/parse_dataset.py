@@ -414,6 +414,6 @@ def parse_unlabeled(dataset_tsv_path: str = "unlabeled_data.tsv"):
     print(f"Processed images: {UNLABELED_PROCESSED_DIR.resolve()}")
 
 if __name__ == "__main__":
-    #parse()
-    #parse_golden()
+    parse()
+    parse_golden()
     parse_unlabeled()
