@@ -25,11 +25,7 @@ GOLDEN_PROCESSED_DIR = GOLDEN_DIR / "processed"
 GOLDEN_META_OUT = GOLDEN_DIR / "metadata_processed.csv"
 GOLDEN_CLEAN_META_OUT = GOLDEN_DIR / "metadata_processed_clean.csv"
 
-UNLABELED_DIR = Path("unlabeled")
-UNLABELED_RAW_DIR = UNLABELED_DIR / "raw"
-UNLABELED_PROCESSED_DIR = UNLABELED_DIR / "processed"
-UNLABELED_META_OUT = UNLABELED_DIR / "metadata_processed.csv"
-UNLABELED_CLEAN_META_OUT = UNLABELED_DIR / "metadata_processed_clean.csv"
+
 
 IMAGE_SIZE = 224
 TIMEOUT = 20
@@ -322,7 +318,14 @@ def parse_golden(dataset_tsv_path : str = "golden_data.tsv"):
     print(f"Clean metadata: {GOLDEN_CLEAN_META_OUT.resolve()} (rows={len(clean)})")
     print(f"Processed images: {GOLDEN_PROCESSED_DIR.resolve()}")
 
-def parse_unlabeled(dataset_tsv_path: str = "unlabeled_data.tsv"):
+def parse_unlabeled(dataset_tsv_path: str = "unlabeled_data.tsv", is_test : bool = False):
+    dir = "unlabeled_test" if is_test else "unlabeled"
+    UNLABELED_DIR = Path(dir)
+    UNLABELED_RAW_DIR = UNLABELED_DIR / "raw"
+    UNLABELED_PROCESSED_DIR = UNLABELED_DIR / "processed"
+    UNLABELED_META_OUT = UNLABELED_DIR / "metadata_processed.csv"
+    UNLABELED_CLEAN_META_OUT = UNLABELED_DIR / "metadata_processed_clean.csv"
+
     UNLABELED_DIR.mkdir(parents=True, exist_ok=True)
     UNLABELED_RAW_DIR.mkdir(parents=True, exist_ok=True)
     UNLABELED_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
@@ -414,6 +417,7 @@ def parse_unlabeled(dataset_tsv_path: str = "unlabeled_data.tsv"):
     print(f"Processed images: {UNLABELED_PROCESSED_DIR.resolve()}")
 
 if __name__ == "__main__":
-    parse()
-    parse_golden()
-    parse_unlabeled()
+    #parse()
+    #parse_golden()
+    #parse_unlabeled("unlabeled.tsv")
+    parse_unlabeled("model_check.tsv", True)

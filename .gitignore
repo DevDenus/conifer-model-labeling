@@ -2,6 +2,7 @@ venv/
 dataset/
 golden/
 unlabeled/
+unlabeled_test/
 *.tsv
 *.csv
 *.pt
